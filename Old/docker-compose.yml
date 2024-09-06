@@ -1,0 +1,66 @@
+services:
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: loki
+    ports:
+      - 3100:3100
+    networks:
+      - monitoring
+    restart: always
+    volumes:
+      - ./loki-config.yaml:/etc/loki/loki-config.yaml
+      - loki:/loki
+    environment:
+      - S3_BUCKET=eternals
+      - S3_REGION=us-east-1
+      - S3_ENDPOINT=http://140.238.255.244:8100
+      - S3_ACCESS_KEY_ID=9NdbItqXELYJBOWgW9uP
+      - S3_SECRET_ACCESS_KEY=0yF75azmrZ1LRpDgbbMTZr0FUzIIY9Nhh0QAV2o4
+    command: -config.file=/etc/loki/loki-config.yaml
+
+  promtail:
+    image: grafana/promtail:2.9.0
+    container_name: promtail
+    ports:
+      - 9080:9080
+      - 9095:9095
+      - 1514:1514/udp
+    networks:
+      - monitoring
+    restart: always
+    volumes:
+      - ./promtail-config.yaml:/etc/promtail/promtail-config.yaml
+      - /var/log:/var/log
+      - /var/lib/docker/containers:/var/lib/docker/containers
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    depends_on:
+      - loki
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - 3000:3000
+    networks:
+      - monitoring
+    restart: always
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=Testing@123
+    volumes:
+      - grafana:/var/lib/grafana
+    depends_on:
+      - loki
+
+volumes:
+  loki:
+    name: 'loki'
+  grafana:
+    name: 'grafana'
+    driver: local
+
+networks:
+  monitoring:
+    name: "monitoring"
+    driver: bridge
