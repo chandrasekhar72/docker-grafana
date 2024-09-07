@@ -1,1 +1,0 @@
-docker run -d --name=grafana -p 3000:3000 --restart=always -e "GF_SECURITY_ADMIN_PASSWORD=Admin@123" -v grafana:/var/lib/grafana grafana/grafana:latest

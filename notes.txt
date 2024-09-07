@@ -1,0 +1,2 @@
+curl -o loki-config.yaml https://raw.githubusercontent.com/grafana/loki/v3.0.0/cmd/loki/loki-local-config.yaml
+curl -o promtail-config.yaml https://raw.githubusercontent.com/grafana/loki/v3.0.0/clients/cmd/promtail/promtail-docker-config.yaml
