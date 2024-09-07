@@ -1,0 +1,55 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "example-dashboard",
+    "title": "Filtered Log Dashboard",
+    "tags": [],
+    "timezone": "browser",
+    "schemaVersion": 30,
+    "version": 1,
+    "panels": [
+      {
+        "type": "logs",
+        "title": "Log Panel",
+        "id": 1,
+        "datasource": "Loki",
+        "targets": [
+          {
+            "expr": "{job=\"audit-logs\"}",
+            "refId": "A"
+          }
+        ],
+        "options": {
+          "showLabels": true
+        }
+      }
+    ],
+    "templating": {
+      "list": [
+        {
+          "name": "client",
+          "type": "query",
+          "datasource": "Loki",
+          "refresh": 1,
+          "query": "label_values(job=\"audit-logs\", client)",
+          "current": {
+            "text": "All",
+            "value": ""
+          }
+        },
+        {
+          "name": "method",
+          "type": "query",
+          "datasource": "Loki",
+          "refresh": 1,
+          "query": "label_values(job=\"audit-logs\", method)",
+          "current": {
+            "text": "All",
+            "value": ""
+          }
+        }
+      ]
+    }
+  },
+  "overwrite": true
+}

@@ -22,19 +22,9 @@ common:
   instance_addr: 127.0.0.1
   path_prefix: /tmp/loki
   storage:
-    # filesystem:
-    #   chunks_directory: /tmp/loki/chunks
-    #   rules_directory: /tmp/loki/rules
-      
-    s3: 
-      bucketnames: "eternals"
-      endpoint: "http://140.238.255.244:8100"
-      insecure: true
-      region: "us-east-1"
-      access_key_id: "ZN0kFCLlLlqxx3s1Ur06"
-      secret_access_key: "UYPNDl4Rzc3dnf3U2Ypa9XwgB7nOvmc69NrYOnST"
-      sse_encryption: true  # Enable server-side encryption
-      s3forcepathstyle: true  # Use path-style URLs (required for MinIO)
+    filesystem:
+      chunks_directory: /tmp/loki/chunks
+      rules_directory: /tmp/loki/rules
 
   replication_factor: 1
   ring:
@@ -52,8 +42,7 @@ schema_config:
   configs:
     - from: 2020-10-24
       store: tsdb
-      # object_store: filesystem
-      object_store: s3
+      object_store: filesystem
       schema: v13
       index:
         prefix: index_
