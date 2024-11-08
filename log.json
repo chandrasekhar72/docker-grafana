@@ -1,0 +1,33 @@
+{
+  "service": "fw_object_store",
+  "user": "admin",
+  "sub_component": "S3 Service",
+  "response": "null",
+  "req_time": "2024-11-07T14:21:11.456Z",
+  "base_url": "/object/get",
+  "res_time": "2024-11-07T14:21:11.507Z",
+  "action": "created",
+  "params": "null",
+  "application_type": "configuration",
+  "privilege": "",
+  "correlation": "1445e08f-553b-4560-820e-01bc9928cb1e",
+  "device": "{\"browser\":{\"name\":\"axios\",\"version\":\"1.6.7\"},\"device\":{\"type\":\"mobile\",\"os\":\"iOS\",\"platform\":\"unknown\"},\"user_agent\":\"axios/1.6.7\"}",
+  "origin": "https://sunpharma-v2.facttwin.com",
+  "host": {
+    "ip": "13.202.134.113"
+  },
+  "timestamp": "2024-11-07T14:21:11.507Z",
+  "type": "info",
+  "module": "FACTTWIN",
+  "ip": "10.4.71.89",
+  "index": "sunpharma",
+  "name": "getBuckets",
+  "username": "",
+  "application": "web",
+  "original_url": "/object/get",
+  "method": "POST",
+  "component": "Storage",
+  "user_agent": "axios/1.6.7",
+  "roles": [],
+  "message": "Fetch successful"
+}
